@@ -26,7 +26,7 @@ Instead of trying to master the backpropagation for a particular type of network
 The above picture shows how easy it is to calculate the gradients for the inputs of the neuron given the gradient from the layer ahead. With that in mind, now let us look at a typical convolutional layer.
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/conv_1.gif" alt="Convolution Forward Pass">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/conv_1.gif" alt="Convolution Forward Pass">
     <figcaption>Convolution of a 3x3 image with a 2x2 filter </figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ For simplicity, I have only considered one channel. I have denoted the pixel val
 Now, let's break down the above convolution operation in an attempt to relate it with the shallow network forward pass (matrix dot product operation).
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/conv_2.png" alt="Convolution Forward Pass">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/conv_2.png" alt="Convolution Forward Pass">
     <figcaption>Convolution operation - Sparse Connections between weights and feature map </figcaption>
 </figure>
 

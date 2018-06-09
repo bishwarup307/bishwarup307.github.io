@@ -30,7 +30,7 @@ The above picture shows how easy it is to calculate the gradients for the inputs
     <figcaption>Convolution of a 3x3 image with a 2x2 filter </figcaption>
 </figure>
 
-For simplicity, I have only considered one channel. I have denoted the pixel values for the input feature map as X's which is typically the notation for the input layer. However, that might as well be any intermediate layer for the network and in that case the X's will be the activations from the previous layer. Z's are the output feature map before applying the non-linearity. I have also omitted the b's (biases) in order to keep it as comprehensive as possible. 
+For simplicity, I have only considered one channel. I have denoted the pixel values for the input feature map as $${X}$$ which is typically the notation for the input layer. However, that might as well be any intermediate layer $${l}$$ for the network and in that case the $${X}$$ will be the activations from the previous layer $$(l - 1)$$ i.e. $${A^{[l - 1]}}$$. $$Z$$ is the output feature map before applying the non-linearity. I have also omitted the $${b}$$ (bias term) in order to keep it as comprehensive as possible. 
 
 Now, let's break down the above convolution operation in an attempt to relate it with the shallow network forward pass (matrix dot product operation).
 
@@ -39,4 +39,38 @@ Now, let's break down the above convolution operation in an attempt to relate it
     <figcaption>Convolution operation - Sparse Connections between weights and feature map </figcaption>
 </figure>
 
-Looks a lot similar to the vanilla networks. By the virtue of sparse connections the output feature map, however, only corresponds to a few (and not all) neurons in the previous layer. Hence, the forward pass in the convnet is pretty straightforward. Before looking into the backward pass though, let's recap the mantra for the backpropagation which is as follows:
+Looks quite similar to a fully-connected neural network. By the virtue of sparse connections the output feature map, however, only corresponds to a few (and not all) neurons in the previous layer. Hence, the forward pass in the convnet is pretty straightforward. Before looking into the backward pass though, let's recap the mantra for the backpropagation which is as follows:
+
+Given **$$d{Z^{[l]}}$$**, which is the gradient received at layer $${l}$$ from the top of the network, if we can calculate:
+1. **$$d{W^{[l]}}$$** (and $$d{b^{[l]}}$$), which is the weight (and bias) for the $${l^{th}}$$ layer and
+2. **$$d{A^{[l - 1]}}$$**, which is the gradient for the activation map for the previous layer i.e. layer $$(l - 1)$$
+all we are left to do is to iterate back from top to bottom updating the weights through gradient descent. In case you are wondering how the computation of $$d{A^{[l - 1]}}$$ helps our cause - then let me say this from $$d{A^{[l - 1]}}$$ you can easily obtain $$d{Z^{[l - 1]}}$$ with a simple elementwise calculation as below:
+
+<figure>
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/relu_backprop.png" alt="Backpropagation of a ReLU operation">
+    <figcaption>Backward pass for a ReLU operation</figcaption>
+</figure>
+
+and with $$d{A^{[l - 1]}}$$ we can calculate $$d{W^{[l - 1]}}$$ and so on.
+
+I just want to cover a couple of more things before looking into the backpropagation for a convolutional layer. This will help you follow more closely. First one is the chain rule of derivative, which I assume, you are already pretty familiar with. However, for the sake of continuity let's just brush up on that.
+
+<figure>
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/chain_rule.png" alt="Chain Rule">
+    <figcaption>Chain rule of derivative</figcaption>
+</figure>
+
+The takeaway from the above picture is that given the gradient of a function (say $$dY$$), if we want to calculate $$dx$$ - we have to take into consideration all the connections from $${x}$$ to $${Y}$$ and take a sum of all intermediate derivatives.
+
+The last thing that I think would be helpful to have a clear idea of what a full convolution means. Most of the time we are talking about convolution we are actually referring to valid convolutions, so let's take a look how full convolution is different from a valid convolution.
+
+<figure>
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/full_conv1.gif" alt="Full Convolution">
+    <figcaption>Full Convolution of a 2x2 feature map with a 2x2 filter</figcaption>
+</figure>
+
+Can you guess what would be the size of the output map?
+
+... right, that's a (3x3) output map which is bigger than the input map. Interseting isn't it?
+
+Finally let us put everything together and try to accomplish our mission of computing the backward step for a convolution layer.

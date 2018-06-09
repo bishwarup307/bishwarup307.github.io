@@ -73,4 +73,27 @@ Can you guess what would be the size of the output map?
 
 ... right, that's a (3x3) output map which is bigger than the input map. Interseting isn't it?
 
-Finally let us put everything together and try to accomplish our mission of computing the backward step for a convolution layer.
+Finally let us put everything together and try to accomplish our mission of computing the backward step for a convolution layer - more specifically how do we calculate d{W^{[l]}}$$ and $$d{A^{[l - 1]}}$$ given $$d{Z^{[l]}}$$. To do that let's first write out the equations for the forward pass:
+
+$${Z_{11}} = {W_{11}}{X_{11}} + {W_{12}}{X_{12}} + {W_{21}}{X_{21}} + {W_{22}}{X_{22}}$$
+
+$${Z_{12}} = {W_{11}}{X_{12}} + {W_{12}}{X_{13}} + {W_{21}}{X_{22}} + {W_{22}}{X_{23}}$$
+
+$${Z_{21}} = {W_{11}}{X_{21}} + {W_{12}}{X_{22}} + {W_{21}}{X_{31}} + {W_{22}}{X_{32}}$$
+
+$${Z_{22}} = {W_{11}}{X_{22}} + {W_{12}}{X_{23}} + {W_{21}}{X_{32}} + {W_{22}}{X_{33}}$$
+
+So given $$dZ$$ we can calculate $$dW$$ pretty easily (chain rule to the rescue):
+
+$$d{W_{11}} = d{Z_{11}}{X_{11}} + d{Z_{12}}{X_{12}} + d{Z_{21}}{X_{21}} + d{Z_{22}}{X_{22}}$$
+
+$$d{W_{12}} = d{Z_{11}}{X_{12}} + d{Z_{12}}{X_{13}} + d{Z_{21}}{X_{22}} + d{Z_{22}}{X_{23}}$$
+
+$$d{W_{21}} = d{Z_{11}}{X_{21}} + d{Z_{12}}{X_{22}} + d{Z_{21}}{X_{31}} + d{Z_{22}}{X_{32}}$$
+
+$$d{W_{22}} = d{Z_{11}}{X_{22}} + d{Z_{12}}{X_{23}} + d{Z_{21}}{X_{32}} + d{Z_{22}}{X_{33}}$$
+
+Do you see what's going on here yet? If not, take a look at the second set of equations more closely. Perhaps one at a time.
+
+
+Think of the pixels in the feature map that get affected by $${W_{11}}$$ and you will quickly realise that that's a (2x2) spatial map in the input feature map. In the backward pass, we are taking that (2x2) map and convolving that with the $$dZ$$ which is also (2x2) and the result is our update $$d{W_{11}}$$. So the sparsity of connections remain valid for the backward pass as well.

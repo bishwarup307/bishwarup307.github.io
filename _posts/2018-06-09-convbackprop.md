@@ -98,11 +98,7 @@ Do you see what's going on here yet? If not, take a look at the second set of eq
 
 Think of the pixels in the input feature map that get affected by the weight term $${W_{11}}$$ and you will quickly realise that that's a (2x2) spatial map in the input feature map as below:
 
-$$\left( {\matrix{
-   {{X_{11}}} & {{X_{12}}}  \cr
-   {{X_{21}}} & {{X_{22}}}  \cr
-
- } } \right)$$
+$\begin{bmatrix}a & b\\c & d\end{bmatrix}$
 
 In the backward pass, we are taking that (2x2) map and convolving that with the $$dZ$$ which is also (2x2) and the result is our update $$d{W_{11}}$$. So the locality of connections remain invariant during the backward pass.
 

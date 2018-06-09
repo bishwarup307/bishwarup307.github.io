@@ -110,5 +110,17 @@ If we calculate this for all the pixels in $$X$$, we get the following matrix:
 
 <figure>
     <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/dx.png" alt="Gradient of Previous Layer Activation">
-    <figcaption>$$d{A^{[l - 1]}}$$ from $$dZ$$</figcaption>
+    <figcaption>Calculation of *dX* in terms of *dZ*</figcaption>
 </figure>
+
+Nothing special so far. Plain simple math. But again take a look at the matrix carefully. Remeber the full convolution yet? As it turns out if we rotate the kernel *W* $${180^o}$$ (flip right twice) and perform a full convolution on $$dZ$$, we get $$dX$$. That is:
+
+$$dX = rot\_180(W) \otimes dZ$$
+
+More generically:
+
+$$d{A^{[l - 1]}} = rot\_180({W^{[l]}}) \otimes d{Z^{[l]}}$$
+
+Which is quite similar to the backpropagation equation for the fully connected networks - just the weight transpose is replaced by a convolution in this case.
+
+That's all for this article. If you have a feedback or question, please feel free to let me know in the comments.

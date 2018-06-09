@@ -20,6 +20,7 @@ Instead of trying to master the backpropagation for a particular type of network
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/backprop_cs231n.png" alt="forward and backward pass of a hidden layer unit">
 
-Here's some math:
-
-$${A^l} = {W^l}{A^{l - 1}} + {b^l}$$
+<figure class="full">
+    <a href="/images/convbackprop/backprop_cs231n.png"><img src="/images/convbackprop/backprop_cs231n.png"></a>
+    <figcaption>The forward and backward flow for a neuron in our network. The figure is taken from a class where Andrej Karpathy teaches backproagation is cs231n http://cs231n.stanford.edu/</figcaption>
+</figure>

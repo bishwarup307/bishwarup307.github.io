@@ -100,10 +100,10 @@ analytics:
 
 # Site Author
 author:
-  name             :"Bishwarup Bhattacharjee"
+  name             : "Bishwarup Bhattacharjee"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              :"Machine Learning Enthusiast"
-  location         :"Mumbai, IN"
+  bio              : "Machine Learning Enthusiast"
+  location         : "Mumbai, IN"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
@@ -113,13 +113,13 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :"bishwarup307"
+  github           : "bishwarup307"
   gitlab           :
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         :"bishwarup-bhattacharjee" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
+  linkedin         : "bishwarup-bhattacharjee" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)

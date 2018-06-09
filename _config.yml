@@ -101,7 +101,7 @@ analytics:
 # Site Author
 author:
   name             : "Bishwarup Bhattacharjee"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/bio.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Machine Learning Enthusiast"
   location         : "Mumbai, IN"
   email            :
@@ -269,3 +269,12 @@ defaults:
       comments: # true
       share: true
       related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      

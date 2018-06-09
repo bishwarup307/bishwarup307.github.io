@@ -71,9 +71,9 @@ The last thing that I think would be helpful to have a clear idea of what a full
 
 Can you guess what would be the size of the output map?
 
-... right, that's a (3x3) output map which is bigger than the input map. Interseting isn't it?
+... right, that's a (3x3) output map which is bigger than the input map. Interesting, isn't it?
 
-Finally let us put everything together and try to accomplish our mission of computing the backward step for a convolution layer - more specifically how do we calculate d{W^{[l]}}$$ and $$d{A^{[l - 1]}}$$ given $$d{Z^{[l]}}$$. To do that let's first write out the equations for the forward pass:
+Finally let us put everything together and try to accomplish our mission of computing the backward step for a convolution layer - more specifically how do we calculate $$d{W^{[l]}}$$ and $$d{A^{[l - 1]}}$$ given $$d{Z^{[l]}}$$. To do that let's first write out the equations for the forward pass:
 
 $${Z_{11}} = {W_{11}}{X_{11}} + {W_{12}}{X_{12}} + {W_{21}}{X_{21}} + {W_{22}}{X_{22}}$$
 
@@ -96,4 +96,19 @@ $$d{W_{22}} = d{Z_{11}}{X_{22}} + d{Z_{12}}{X_{23}} + d{Z_{21}}{X_{32}} + d{Z_{2
 Do you see what's going on here yet? If not, take a look at the second set of equations more closely. Perhaps one at a time.
 
 
-Think of the pixels in the feature map that get affected by $${W_{11}}$$ and you will quickly realise that that's a (2x2) spatial map in the input feature map. In the backward pass, we are taking that (2x2) map and convolving that with the $$dZ$$ which is also (2x2) and the result is our update $$d{W_{11}}$$. So the sparsity of connections remain valid for the backward pass as well.
+Think of the pixels in the input feature map that get affected by $${W_{11}}$$ and you will quickly realise that that's a (2x2) spatial map in the input feature map. In the backward pass, we are taking that (2x2) map and convolving that with the $$dZ$$ which is also (2x2) and the result is our update $$d{W_{11}}$$. So the locality of connections remain invariant during the backward pass.
+
+So obtaining $$dW$$ from $$dZ$$ was quite straightforward. Now let's find out how we can derive $$d{A^{[l - 1]}}$$ or $$dX$$ in our case. We shall think of the **connections** that we talked about in the chain rule figure. For example, in order to calculate $$d{X_{11}}$$ - let's find out first how many connections are their from $${X_{11}}$$ to $$Z$$. Turns out there is only one connection - that is through $${W_{11}}$$ to $$d{Z_{11}}$$. Hence, given $$dZ$$, we can calculate $$d{X_{11}}$$ as follows:
+
+$$d{X_{11}} = {W_{11}}d{Z_{11}}$$
+
+What about $${X_{12}}$$? There are two connections - $${W_{12}} \to {Z_{11}}$$ and $${W_{11}} \to {Z_{12}}$$. So, similarly we can obtain:
+
+$$d{X_{12}} = {W_{12}}d{Z_{11}} + {W_{11}}d{Z_{12}}$$
+
+If we calculate this for all the pixels in $$X$$, we get the following matrix:
+
+<figure>
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/dx.png" alt="Gradient of Previous Layer Activation">
+    <figcaption>$$d{A^{[l - 1]}}$$ from $$dZ$$</figcaption>
+</figure>

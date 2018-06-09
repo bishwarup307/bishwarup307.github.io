@@ -6,4 +6,9 @@ tags: [deep learning, computer vision, backpropagation, convolutional neural net
 header:
   image: "/images/convbackprop/header.png"
 excerpt: "Deep Learning, Convolutional Neural Network (CNN), Backpropagation"
+mathjax: "true"
 ---
+
+Here's some math:
+
+$${A^l} = {W^l}{A^{l - 1}} + {b^l}$$

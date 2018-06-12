@@ -26,7 +26,7 @@ Instead of trying to master the backpropagation for a particular type of network
 The above picture shows how easy it is to calculate the gradients for the inputs of the neuron given the gradient from the layer ahead. With that in mind, now let us look at a typical convolutional layer.
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/conv_1.gif" alt="Convolution Forward Pass">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/conv_1.gif" alt="Convolution Forward Pass" style="width:700px;" class="align-center">
     <figcaption>Convolution of a 3x3 image with a 2x2 filter </figcaption>
 </figure>
 
@@ -47,7 +47,7 @@ Given **$$d{Z^{[l]}}$$**, which is the gradient received at layer $${l}$$ from t
 all we are left to do is to iterate back from top to bottom updating the weights through gradient descent. In case you are wondering how the computation of $$d{A^{[l - 1]}}$$ helps our cause - then let me say this from $$d{A^{[l - 1]}}$$ you can easily obtain $$d{Z^{[l - 1]}}$$ with a simple elementwise calculation as below:
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/relu_backprop.png" alt="Backpropagation of a ReLU operation">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/relu_backprop.png" alt="Backpropagation of a ReLU operation" style="width:600px;" class="align-center">
     <figcaption>Backward pass for a ReLU operation</figcaption>
 </figure>
 
@@ -56,7 +56,7 @@ and with $$d{A^{[l - 1]}}$$ we can calculate $$d{W^{[l - 1]}}$$ and so on.
 I just want to cover a couple of more things before looking into the backpropagation for a convolutional layer. This will help you follow more closely. First one is the chain rule of derivative, which I assume, you are already pretty familiar with. However, for the sake of continuity let's just quickly brush up on that.
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/chain_rule.png" alt="Chain Rule">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/chain_rule.png" alt="Chain Rule" style="width:600px;" class="align-center">
     <figcaption>Chain rule of derivative</figcaption>
 </figure>
 
@@ -114,7 +114,7 @@ $$d{X_{12}} = {W_{12}}d{Z_{11}} + {W_{11}}d{Z_{12}}$$
 If we calculate the gradients for all the pixels in $$X$$, we end up with the following matrix:
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/dx.png" alt="Gradient of Previous Layer Activation">
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/dx.png" alt="Gradient of Previous Layer Activation" style="width:700px;" class="align-center">
     <figcaption>Calculation of dX in terms of dZ</figcaption>
 </figure>
 

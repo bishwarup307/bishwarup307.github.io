@@ -47,8 +47,8 @@ Given **$$d{Z^{[l]}}$$**, which is the gradient received at layer $${l}$$ from t
 all we are left to do is to iterate back from top to bottom updating the weights through gradient descent. In case you are wondering how the computation of $$d{A^{[l - 1]}}$$ helps our cause - then let me say this from $$d{A^{[l - 1]}}$$ you can easily obtain $$d{Z^{[l - 1]}}$$ with a simple elementwise calculation as below:
 
 <figure>
-    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/relu_backprop.png" alt="Backpropagation of a ReLU operation" style="width:600px;" class="align-center">
-    <figcaption>Backward pass for a ReLU operation</figcaption>
+    <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/relu_backprop.png" alt="Backpropagation of a ReLU operation" style="width:700px;" class="align-center">
+
 </figure>
 
 and with $$d{A^{[l - 1]}}$$ we can calculate $$d{W^{[l - 1]}}$$ and so on.
@@ -57,7 +57,7 @@ I just want to cover a couple of more things before looking into the backpropaga
 
 <figure>
     <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/chain_rule.png" alt="Chain Rule" style="width:600px;" class="align-center">
-    <figcaption>Chain rule of derivative</figcaption>
+
 </figure>
 
 The takeaway from the above picture is that given the gradient of a function (say $$dY$$), if we want to calculate $$dx$$ - we have to take into consideration all the connections from $${x}$$ to $${Y}$$ and take a sum of all the intermediate derivatives.
@@ -115,7 +115,6 @@ If we calculate the gradients for all the pixels in $$X$$, we end up with the fo
 
 <figure>
     <img src="{{ site.url }}{{ site.baseurl }}/images/convbackprop/dx.png" alt="Gradient of Previous Layer Activation" style="width:700px;" class="align-center">
-    <figcaption>Calculation of dX in terms of dZ</figcaption>
 </figure>
 
 Nothing special so far. Plain simple math. But again take a look at the matrix carefully. Remeber the full convolution still? As it turns out if we rotate the kernel *W* $${180^o}$$ (flip right twice) and perform a full convolution on $$dZ$$, we get the exact same matrix as $$dX$$. That is:

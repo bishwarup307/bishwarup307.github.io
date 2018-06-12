@@ -493,6 +493,13 @@
   text-transform: uppercase;
 }
 
+
+.article-wrap p {
+  font-size: 12px; /* 16 is the default increase if you want it larger */
+  font-weight: lighter;
+  color: #404040;
+}
+
 /*
    Wide Pages
    ========================================================================== */

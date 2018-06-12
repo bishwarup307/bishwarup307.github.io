@@ -106,7 +106,7 @@ author:
   location         : "Mumbai, IN"
   email            :
   uri              :
-  home             : # null (default), "absolute or relative url to link to author home"
+  home             : "https://www.kaggle.com/bishwarup" # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
@@ -279,3 +279,8 @@ defaults:
     values:
       layout: single
       author_profile: true
+      
+  comments:
+    provider: "disqus"
+    disqus:
+      shortname: "bishwarup307"

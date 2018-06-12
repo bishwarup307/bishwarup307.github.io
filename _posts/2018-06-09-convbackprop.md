@@ -1,6 +1,8 @@
 ---
 title: "Understanding Backpropagation for ConvNets"
 date: 2018-06-09
+categories:
+  - Deep Learning
 tags: [deep learning, computer vision, backpropagation, convolutional neural networks, cnn, convnet, convolution, neural network,
       gradient descent]
 header:

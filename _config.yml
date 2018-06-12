@@ -279,8 +279,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      
-  comments:
-    provider: "disqus"
-    disqus:
-      shortname: "bishwarup307"
+
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "bishwarup307"
